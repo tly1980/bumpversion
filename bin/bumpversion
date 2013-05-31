@@ -50,6 +50,8 @@
     VERSION.main = execSync.exec("git rev-parse --abbrev-ref HEAD").stdout.replace('\n', '');
   }
 
+  console.log('args', args);
+
   if (args.c === null) {
     try {
       OLD_VERSION = require('./VERSION.json');

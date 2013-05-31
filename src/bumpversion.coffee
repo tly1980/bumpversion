@@ -44,6 +44,8 @@ VERSION =
 VERSION.main = args.m
 VERSION.main = execSync.exec("git rev-parse --abbrev-ref HEAD").stdout.replace('\n', '') if args.m == null 
 
+console.log 'args', args
+
 if args.c == null
 	try
 		OLD_VERSION = require './VERSION.json'
