@@ -13,6 +13,13 @@ Basically, it will produce a VERSION.json in following structure:
 '''
 
 
+
+try
+	BV_VERSION = require('./bumpversion_VERSION.json')
+catch error
+	BV_VERSION = {main: 'r0.1'}	
+		
+
 execSync = require 'execSync'
 fs = require 'fs'
 path = require 'path'
@@ -21,9 +28,9 @@ path = require 'path'
 ArgumentParser= require('argparse').ArgumentParser
 
 parser = new ArgumentParser { 
-	version: '0.0.1', 
+	version: BV_VERSION.main, 
 	addHelp: true, 
-	description: 'Argparse examples: sub-commands'
+	description: 'A tool to generate / bump the version to a JSON file.'
 }
 
 parser.addArgument ['-m'], { help: 'Update the main version. If you do not specify version number, Main version will be take it as git branch by default.'}
@@ -45,7 +52,7 @@ VERSION =
 VERSION.main = args.m
 VERSION.main = execSync.exec("git rev-parse --abbrev-ref HEAD").stdout.replace('\n', '') if args.m == null 
 
-console.log 'args', args
+#console.log 'args', args
 
 if args.c == null
 	try
