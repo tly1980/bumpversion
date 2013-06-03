@@ -6,7 +6,9 @@ version: bin/bumpversion
 
 bin/bumpversion:
 	coffee -o bin/ -c src/
+	cp bin/bumpversion.js lib/bumpversion
 	mv bin/bumpversion.js bin/bumpversion
+
 
 test:
 	coffee -o tests/ -c tests/
