@@ -18,7 +18,7 @@
     "mocha": ">=1.7.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": "https://github.com/tly1980/bumpversion.git",
   "author": "Tom Tang",
