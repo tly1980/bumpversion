@@ -23,14 +23,14 @@ Meanwhile, a file named VERSION.json would be created with same content.
 
 ## VERSION.json
 
-* main 
+* ```main``` 
   A string field, indicating the main version. Could be something like "release/v1.2.3"
-* cache
+* ```cache```
   A integer field indicating the cache version. A good usercase of this field is CDN versioning.
   If you do not specify "-c", this field would be self increment.
-* timestamp
+* ```timestamp```
   A GMT timestamp indicating when the file being generated.
-* last_commits
+* ```last_commits```
   If you are using git, you can call bumpversion -lc 3, it would include last three commits version hash and log message  into last_commits.
 
 
