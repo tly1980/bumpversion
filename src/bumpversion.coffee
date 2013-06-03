@@ -15,6 +15,7 @@ Basically, it will produce a VERSION.json in following structure:
 
 execSync = require 'execSync'
 fs = require 'fs'
+path = require 'path'
 
 # preparing the ArgParser
 ArgumentParser= require('argparse').ArgumentParser
@@ -48,7 +49,8 @@ console.log 'args', args
 
 if args.c == null
 	try
-		OLD_VERSION = require './VERSION.json'
+		OLD_VERSION_PATH = path.resolve(process.cwd(), './VERSION.json')
+		OLD_VERSION = require OLD_VERSION_PATH
 		VERSION.cache = OLD_VERSION.cache + 1
 	catch exception
 		console.log "OLD_VERSION is not existed, will create new one"
@@ -57,7 +59,7 @@ else
 
 if args.lc > 0
 	ret = execSync.exec("git log -" + args.lc + " --pretty=oneline")
-	VERSION.last_commits = ret.stdout.split('\n')
+	VERSION.last_commits = (i for i in ret.stdout.split('\n') when i isnt '')
 
 fs.writeFileSync './VERSION.json', JSON.stringify(VERSION, null, 4)
 
