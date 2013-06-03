@@ -1,27 +1,27 @@
 {
-  "name": "bumpversion",
-  "version": "0.1.0",
-  "description": "A version bumping tool based on node.js",
-  "main": "lib/bumpversion",
-  "bin": {
-    "bumpversion": "./bin/bumpversion"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "dependencies": {
-    "argparse": "~0.1.15",
-    "execSync": "~0.0.4"
-  },
-  "devDependencies": {
-    "coffee-script": ">=1.6.0",
-    "mocha": ">=1.7.0"
-  },
-  "scripts": {
-    "test": "make test"
-  },
-  "repository": "https://github.com/tly1980/bumpversion.git",
-  "author": "Tom Tang",
-  "license": "BSD",
-  "gitHead": "ce2b0ec018c31bdd0c260dbe7ab45d2365e63256"
+    "name": "bumpversion",
+    "version": "0.2",
+    "description": "A version bumping tool based on node.js",
+    "main": "lib/bumpversion",
+    "bin": {
+        "bumpversion": "./bin/bumpversion"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "dependencies": {
+        "argparse": "~0.1.15",
+        "execSync": "~0.0.4"
+    },
+    "devDependencies": {
+        "coffee-script": ">=1.6.0",
+        "mocha": ">=1.7.0"
+    },
+    "scripts": {
+        "test": "make test"
+    },
+    "repository": "https://github.com/tly1980/bumpversion.git",
+    "author": "Tom Tang",
+    "license": "BSD",
+    "gitHead": "ce2b0ec018c31bdd0c260dbe7ab45d2365e63256"
 }

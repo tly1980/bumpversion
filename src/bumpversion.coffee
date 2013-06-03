@@ -43,6 +43,8 @@ parser.addArgument ['-f'], { action: 'store', defaultValue: 'VERSION.json', help
 
 parser.addArgument ['-x'], { action: 'store', defaultValue: '', help: 'Exclude the fields to be updated. Could be "m", "c" or "mc".'}
 
+parser.addArgument ['-p'], { action: 'storeTrue', defaultValue: false , help: 'Update the VERSION to package.json.'}
+
 
 args = parser.parseArgs()
 
@@ -56,8 +58,6 @@ VERSION =
 
 VERSION.main = args.m
 VERSION.main = execSync.exec("git rev-parse --abbrev-ref HEAD").stdout.replace('\n', '') if args.m == null 
-
-console.log 'args', args
 
 VERSION_PATH = path.resolve(process.cwd(), args.f)
 
@@ -87,3 +87,13 @@ if 'm' in args.x
 fs.writeFileSync VERSION_PATH, JSON.stringify(VERSION, null, 4)
 
 console.log 'version bumped to:\n' + JSON.stringify(VERSION, null, 4) + '\n and save to : ' + VERSION_PATH  if args.q != yes
+
+if args.p
+	package_json_path = path.resolve(process.cwd(), './package.json')
+	package_json = loadJSON package_json_path
+	package_json.version = VERSION.main
+	fs.writeFileSync package_json_path, JSON.stringify(package_json, null, 4)
+	console.log 'package.json is also being updated with version: ' + VERSION.main
+
+
+
