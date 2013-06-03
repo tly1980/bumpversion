@@ -167,7 +167,7 @@ Optional arguments:
 
 ## Best Practice ##
 
-_bumpversion is particular useful when you use it with [gitflow](https://github.com/nvie/gitflow)*._
+_bumpversion is particular useful when you use it with [gitflow](https://github.com/nvie/gitflow)._
 
 ###call bumpverson as soon as you start a new feature / hotfix branch###
 
@@ -181,7 +181,7 @@ call ```bumpversion -lc 2```. This would dump the latest 2 git log / commit hash
 You can exposed VERSION.json somewhere (via HTTP GET or inside a HTML ) and verify the latest version of you application.
 
 ###Alternatively,###
-```bumpversion -lc 2``` can be call after your code being deployed. Let say place it somewhere in your devOps script.
+```bumpversion -lc 2 -x m``` can be call after your code being deployed. Let say place it somewhere in your devOps script.
 
 ### Take cares package.json automatically ###
 If your application is a node.js application, bumpversion can also maitain the version field in package.json.
