@@ -167,8 +167,23 @@ Optional arguments:
 
 ## Best Practice ##
 bumpversion is particular useful when you use it with git flow / hubflow.
-You can call bumpversion -lc 2 every time you are about to close your release or hotfix branch, namely (git flow release finish / git flow hotfix finish).
+
+You can call following command every time you are about to close your release or hotfix branch, namely (git flow release finish / git flow hotfix finish).
+```
+bumpversion -lc 2
+```
+
 It would automatically record take the branch name as main version and include the last commits log into VERSION.json.
+
+Alternatively, 
+1. you can call following command when you start a new release / hotfix branch.
+```
+bumpversion
+```
+2. After you have deploy the code to the server, you can run following command to accuire what are the exact git version the code is up to:
+```
+bumpversion -lc 2
+```
 
 
 ## Release History
