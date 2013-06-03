@@ -6,7 +6,10 @@ version: bin/bumpversion
 
 bin/bumpversion:
 	coffee -o bin/ -c src/
-	mv bin/bumpversion.js bin/bumpversion
+	cp bin/bumpversion.js lib/bumpversion.js
+	echo "#!/usr/bin/env node\n" > bin/bumpversion
+	cat bin/bumpversion.js >> bin/bumpversion
+	chmod a+x bin/bumpversion
 
 test:
 	coffee -o tests/ -c tests/
