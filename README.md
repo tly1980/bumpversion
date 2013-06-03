@@ -90,6 +90,51 @@ version bumped to:
     ]
 }
 ```
+
+### Semantic version conversion
+bumpversion supports very basic [Semantic Version](http://semver.org/) convertion.
+
+
+
+For example, current branch is "release/0.1.3", if you add "-s", main version would be converted to "0.1.3"
+
+```
+bumpversion -s
+```
+
+Output
+
+```
+VERSION_PATH /Users/minddriven/workspace/bumpversion/VERSION.json
+version bumped to:
+{
+    "cache": 7,
+    "timestamp": "2013-06-03T05:45:41.422Z",
+    "main": "0.1.3"
+}
+ and save to : /Users/minddriven/workspace/bumpversion/VERSION.json
+```
+
+More information about [Semantic Version](http://semver.org/)
+
+### Update the package.json.
+
+```
+bumpversion  -s -p
+VERSION_PATH /Users/minddriven/workspace/bumpversion/VERSION.json
+version bumped to:
+{
+    "cache": 8,
+    "timestamp": "2013-06-03T05:48:37.756Z",
+    "main": "0.1.3"
+}
+ and save to : /Users/minddriven/workspace/bumpversion/VERSION.json
+package.json is also being updated with version: 0.1.3
+```
+_Notes:_
+It is always recommand to use -p with -s. In the next version, -p would implies -s.
+
+
 ## Usage
 Displaying the help
 
@@ -98,7 +143,9 @@ $> bumpversion -h
 ```
 
 ```
-usage: bumpversion [-h] [-v] [-m M] [-c C] [-q] [-lc LC]
+usage: bumpversion [-h] [-v] [-m M] [-c C] [-q] [-lc LC] [-f F] [-x X] [-p]
+                   [-s]
+
 
 A tool to generate / bump the version to a JSON file.
 
@@ -112,6 +159,10 @@ Optional arguments:
                  it would be a self increment number
   -q             quiet mode.
   -lc LC         Update the last default commit
+  -f F           The file to store JSON
+  -x X           Exclude the fields to be updated. Could be "m", "c" or "mc".
+  -p             Update the VERSION to package.json.
+  -s             Semantic version conversion.
 ```
 
 ## Best Practice ##
