@@ -1,7 +1,7 @@
 all: bin/bumpversion
 
 version: bin/bumpversion
-	node bin/bumpversion 
+	bin/bumpversion -p -lc 2
 	cp VERSION.json bin/bumpversion_VERSION.json
 
 bin/bumpversion:

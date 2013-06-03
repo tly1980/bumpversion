@@ -1,5 +1,9 @@
 {
     "cache": 2,
-    "timestamp": "2013-06-03T01:22:13.470Z",
-    "main": "release/0.1"
+    "timestamp": "2013-06-03T05:22:37.873Z",
+    "main": "release/0.1.2",
+    "last_commits": [
+        "e70b1d2d14ba699e461513b52efc0d2dc8cb3239 package.json now can be updated as well",
+        "556d66b1fc5711825f0a07a665d7fce42acc2e7d allow you to input the version file"
+    ]
 }
