@@ -12,8 +12,6 @@ Basically, it will produce a VERSION.json in following structure:
 }
 '''
 
-
-
 try
 	BV_VERSION = require('./bumpversion_VERSION.json')
 catch error
@@ -39,11 +37,18 @@ parser.addArgument ['-c'], { action: 'store', type: 'int', help: 'Update the cac
 
 parser.addArgument ['-q'], {help: 'quiet mode.', action: 'storeTrue'}
 
-parser.addArgument ['-lc'], { action: 'store', type: 'int', default: 0, help: 'Update the last default commit'}
+parser.addArgument ['-lc'], { action: 'store', type: 'int', defaultValue: 0, help: 'Update the last default commit'}
+
+parser.addArgument ['-f'], { action: 'store', defaultValue: 'VERSION.json', help: 'The file to store JSON'}
+
+parser.addArgument ['-x'], { action: 'store', defaultValue: '', help: 'Exclude the fields to be updated. Could be "m", "c" or "mc".'}
 
 
 args = parser.parseArgs()
 
+loadJSON = (fpath)->
+    content = fs.readFileSync fpath, 'utf8'
+    return JSON.parse content
 
 VERSION =
 	cache: 1
@@ -52,12 +57,15 @@ VERSION =
 VERSION.main = args.m
 VERSION.main = execSync.exec("git rev-parse --abbrev-ref HEAD").stdout.replace('\n', '') if args.m == null 
 
-#console.log 'args', args
+console.log 'args', args
+
+VERSION_PATH = path.resolve(process.cwd(), args.f)
+
+console.log "VERSION_PATH", VERSION_PATH
 
 if args.c == null
 	try
-		OLD_VERSION_PATH = path.resolve(process.cwd(), './VERSION.json')
-		OLD_VERSION = require OLD_VERSION_PATH
+		OLD_VERSION = loadJSON VERSION_PATH
 		VERSION.cache = OLD_VERSION.cache + 1
 	catch exception
 		console.log "OLD_VERSION is not existed, will create new one"
@@ -68,6 +76,14 @@ if args.lc > 0
 	ret = execSync.exec("git log -" + args.lc + " --pretty=oneline")
 	VERSION.last_commits = (i for i in ret.stdout.split('\n') when i isnt '')
 
-fs.writeFileSync './VERSION.json', JSON.stringify(VERSION, null, 4)
+if 'c' in args.x
+	if (OLD_VERSION?)
+		VERSION.cache = OLD_VERSION.cache
 
-console.log 'version bumped to:\n ' + JSON.stringify(VERSION, null, 4) if args.q != yes
+if 'm' in args.x
+	if (OLD_VERSION?)
+		VERSION.main = OLD_VERSION.main
+
+fs.writeFileSync VERSION_PATH, JSON.stringify(VERSION, null, 4)
+
+console.log 'version bumped to:\n' + JSON.stringify(VERSION, null, 4) + '\n and save to : ' + VERSION_PATH  if args.q != yes
