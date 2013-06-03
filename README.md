@@ -166,24 +166,27 @@ Optional arguments:
 ```
 
 ## Best Practice ##
-bumpversion is particular useful when you use it with git flow / hubflow.
 
-You can call following command every time you are about to close your release or hotfix branch, namely (git flow release finish / git flow hotfix finish).
-```
-bumpversion -lc 2
-```
+_bumpversion is particular useful when you use it with [gitflow](https://github.com/nvie/gitflow)*._
 
-It would automatically record take the branch name as main version and include the last commits log into VERSION.json.
+###call bumpverson as soon as you start a new feature / hotfix branch###
 
-Alternatively, 
-1. you can call following command when you start a new release / hotfix branch.
 ```
 bumpversion
 ```
-2. After you have deploy the code to the server, you can run following command to accuire what are the exact git version the code is up to:
-```
-bumpversion -lc 2
-```
+It would automatically record take the branch name as main version and include the last commits log into VERSION.json.
+
+###When you about to finish the release / hotfix branch ###
+call ```bumpversion -lc 2```. This would dump the latest 2 git log / commit hash into VERSION.json.
+You can exposed VERSION.json somewhere (via HTTP GET or inside a HTML ) and verify the latest version of you application.
+
+###Alternatively,###
+```bumpversion -lc 2``` can be call after your code being deployed. Let say place it somewhere in your devOps script.
+
+### Take cares package.json automatically ###
+If your application is a node.js application, bumpversion can also maitain the version field in package.json.
+Take a look at "-p" tag. And you would probably want to add "-s" when using "-p".
+
 
 
 ## Release History
