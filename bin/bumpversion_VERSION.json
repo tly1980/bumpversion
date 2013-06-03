@@ -1,9 +1,9 @@
 {
-    "cache": 10,
-    "timestamp": "2013-06-03T05:54:29.173Z",
+    "cache": 11,
+    "timestamp": "2013-06-03T05:55:09.533Z",
     "main": "0.1.3",
     "last_commits": [
-        "76f55072acd39d0364b2508c090b2387edbc9bcb version bumped",
-        "74a8c4d7cc12b52aedf5cd7a55b893c109469e0a initial Semantic Versioning convention added"
+        "f17aec4f4d51e1faa63009f4279aadad7fc68fa4 Merge branch 'release/0.1.3' of https://github.com/tly1980/bumpversion into release/0.1.3",
+        "339ad3c3c9a94349d5c8e9b258e774e352cf9579 version bumped"
     ]
 }
