@@ -45,12 +45,19 @@ parser.addArgument ['-x'], { action: 'store', defaultValue: '', help: 'Exclude t
 
 parser.addArgument ['-p'], { action: 'storeTrue', defaultValue: false , help: 'Update the VERSION to package.json.'}
 
+parser.addArgument ['-s'], { action: 'storeTrue', defaultValue: false , help: 'Semantic version conversion.'}
+
 
 args = parser.parseArgs()
 
 loadJSON = (fpath)->
     content = fs.readFileSync fpath, 'utf8'
     return JSON.parse content
+
+semver = (ver)->
+	# take care the release/12.3 and hotfix/12.5
+	ret = ver.replace(/^[^/]+\//, '')
+	return ret
 
 VERSION =
 	cache: 1
@@ -83,6 +90,9 @@ if 'c' in args.x
 if 'm' in args.x
 	if (OLD_VERSION?)
 		VERSION.main = OLD_VERSION.main
+
+if args.s
+	VERSION.main = semver VERSION.main
 
 fs.writeFileSync VERSION_PATH, JSON.stringify(VERSION, null, 4)
 
